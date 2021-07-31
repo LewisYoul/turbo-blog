@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deskforaday</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <%= stimulus_include_tags %>
+    <%= javascript_include_tag "turbo", type: "module-shim" %>
+    <%= yield :head %>
+  </head>
+
+  <body>
+    <%= yield %>
+
+    <%= render 'shared/toast', locals: { alert: alert, notice: notice } %>
+  </body>
+</html>
