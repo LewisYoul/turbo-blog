@@ -8,6 +8,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super do |user|
       Account.create(user_id: user.id) if user.persisted?
+
+      UserMailer.with(user: user).welcome_email.deliver_later
     end
   end
 

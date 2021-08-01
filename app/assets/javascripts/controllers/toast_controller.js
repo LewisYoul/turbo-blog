@@ -8,15 +8,12 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log('connext')
     if (this.alertValue || this.noticeValue) {
       this.showToast()
     }
   }
 
   showToast() {
-    console.log('displaying toast')
-
     this.messageTarget.innerHTML = this.alertValue || this.noticeValue
     this.messageWrapperTarget.classList.add(...this.classesForToastType())
     this.element.classList.remove('hidden')
