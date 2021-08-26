@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "edit_profile" do %>
-  <%= form_for(current_user, url: '', method: :put) do |form| %>
+  <%= form_for(current_user, url: profile_path(current_user), method: :put) do |form| %>
     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
       <div class="px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -9,37 +9,24 @@
 
       <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
         <dl class="sm:divide-y sm:divide-gray-200">
-          <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-              Email address
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= current_user.email %>
-            </dd>
+          <div class="flex items-center py-4 sm:py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <%= form.label :email, class: "text-sm font-medium text-gray-500" %>
+            <%= form.email_field :email, autofocus: true, class: "border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-500 focus:border-pink-500 py-2 px-2 text-sm text-gray-900" %>
           </div>
-          <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-              First name
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= current_user.first_name %>
-            </dd>
+          <div class="flex items-center py-4 sm:py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <%= form.label :first_name, class: "text-sm font-medium text-gray-500" %>
+            <%= form.text_field :first_name, autofocus: true, class: "border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-500 focus:border-pink-500 py-2 px-2 text-sm text-gray-900" %>
           </div>
-          <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt class="text-sm font-medium text-gray-500">
-              Last name
-            </dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <%= current_user.last_name %>
-            </dd>
+          <div class="flex items-center py-4 sm:py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <%= form.label :last_name, class: "text-sm font-medium text-gray-500" %>
+            <%= form.text_field :last_name, autofocus: true, class: "border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-500 focus:border-pink-500 py-2 px-2 text-sm text-gray-900" %>
           </div>
         </dl>
       </div>
     </div>
 
     <div class="flex justify-end mt-4">
-      <%= form.submit "Save profile", class: "inline-flex justify-center text-base font-medium text-pink-500 hover:bg-pink-100 border-2 px-3 py-1 border-pink-400 rounded-md" %>
+      <%= form.submit "Save profile", class: "cursor-pointer inline-flex justify-center text-base font-medium text-pink-500 hover:bg-pink-100 border-2 px-3 py-1 border-pink-400 rounded-md" %>
     </div>
   <% end %>
-
 <% end %>

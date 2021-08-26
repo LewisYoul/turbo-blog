@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
   }
 
-  resources :profile, only: :index do
+  resources :profile, only: %i(index update) do
     get :edit, on: :collection
   end
   resources :users, only: :show
