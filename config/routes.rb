@@ -9,5 +9,9 @@ Rails.application.routes.draw do
     get :edit, on: :collection
   end
   resources :users, only: :show
+  
+  namespace :admin do
+    resources :posts, only: %i(index new create)
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
