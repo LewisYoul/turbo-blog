@@ -1,0 +1,8 @@
+<div class="px-3 md:px-0 max-w-3xl mx-auto py-3">
+  <h1 class="m-0 pt-12 text-center"><%= @post.title %></h1>
+  <p class="text-center text-md text-gray-500 mt-2"><%= @post.created_at.strftime('%d %b %Y') %></p>
+
+  <div id="post" class="pt-12">
+    <%= raw(@post.parsed_body) %>
+  </div>
+</div>

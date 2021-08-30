@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get :edit, on: :collection
   end
   resources :users, only: :show
+  resources :posts, only: :show
   
   namespace :admin do
     resources :posts, only: %i(index new create)

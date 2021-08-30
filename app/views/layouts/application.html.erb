@@ -6,8 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
     <%= stimulus_include_tags %>
@@ -17,9 +15,9 @@
   <body>
     <nav class="bg-white border-b">
       <div class="px-3 md:px-0  max-w-3xl mx-auto py-3 flex justify-between items-center">
-        <a class="text-pink-600 text-xl hover:underline" href="index.html">
+        <%= link_to root_path, class: 'text-pink-600 text-xl hover:underline' do %>
           <h3 class="m-0">Lewis Youl</h3>
-        </a>
+        <% end %>
         <div>
           <a class="inline-block text-pink-600 hover:text-pink-400" href="https://www.twitter.com/lewisyoul" target="_blank">
             <svg class="h-5 w-5" fill="currentColor" version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 248 204" style="enable-background:new 0 0 248 204;" xml:space="preserve">
