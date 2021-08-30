@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   root to: 'home#index'
-  devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions',
-  }
+
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
   resources :profile, only: %i(index update) do
     get :edit, on: :collection
