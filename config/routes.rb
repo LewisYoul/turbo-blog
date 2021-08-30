@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :posts, only: :show
   
   namespace :admin do
-    resources :posts, only: %i(index new create)
-    resources :posts_preview, only: :create
+    resources :posts, only: %i(index new create edit update)
+    resources :posts_preview, only: %i(index create update)
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

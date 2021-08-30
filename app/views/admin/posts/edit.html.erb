@@ -1,0 +1,8 @@
+<div class="flex justify-between align-center">
+  <%= link_to post_path(@post), class: 'hover:underline text-pink-600' do %>
+    <h4>< Back</h4>
+  <% end %>
+  <h2>Edit Post</h2>
+</div>
+
+<%= render partial: 'form' %>
