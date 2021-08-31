@@ -23,7 +23,7 @@ export default class extends Controller {
 
   setToastTimeout() {
     const timeout = 8000
-    
+
     setTimeout(() => {
       this.messageTarget.innerHTML = ''
       this.messageWrapperTarget.classList.remove(...this.classesForToastType())
@@ -32,6 +32,6 @@ export default class extends Controller {
   }
 
   classesForToastType() {
-    return this.alertValue ? ['bg-red-50', 'border-red-500'] : ['bg-green-50', 'border-green-500']
+    return this.alertValue ? ['bg-red-100'] : ['bg-green-100']
   }
 }

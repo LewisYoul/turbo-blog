@@ -1,16 +1,12 @@
 <%= turbo_frame_tag 'toast' do %>
-  <div
-    data-controller="toast"
-    data-toast-alert-value="<%= alert %>"
-    data-toast-notice-value="<%= notice %>"
-    class="w-full fixed bottom-0 mb-4 hidden">
-    <div data-toast-target="messageWrapper" class="border m-auto w-1/2 rounded-md p-4">
-      <div class="flex">
-        <div class="ml-3">
-          <div class="mt-2 text-sm font-medium text-gray-700">
-            <p data-toast-target="message" class="block text-center"></p>
-          </div>
-        </div>
+  <div class="flex w-full justify-center">
+    <div
+      data-controller="toast"
+      data-toast-alert-value="<%= alert %>"
+      data-toast-notice-value="<%= notice %>"
+      class="fixed bottom-0 mb-6 hidden">
+      <div data-toast-target="messageWrapper" class="shadow-md text-gray-800 rounded-md px-4 py-2">
+        <span data-toast-target="message" class="block text-center"></span>
       </div>
     </div>
   </div>
