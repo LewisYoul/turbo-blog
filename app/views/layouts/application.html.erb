@@ -10,7 +10,7 @@
 
     <%= stimulus_include_tags %>
     <%= javascript_include_tag "turbo", type: "module-shim" %>
-    <%= yield :head %>
+    <%= content_for :twitter_card if content_for? :twitter_card %>
   </head>
   <body>
     <nav class="bg-white border-b">

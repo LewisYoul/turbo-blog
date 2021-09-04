@@ -1,3 +1,8 @@
+<% content_for :twitter_card do %>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="<%= @post.title %>">
+  <meta name="twitter:image" content="https://miro.medium.com/max/1420/1*9hd_8qR0CMZ8L0pVbFLjDw.png">
+<% end %>
 
 <div class="px-3 md:px-0 max-w-3xl mx-auto py-3">
   <h1 class="m-0 pt-12 text-center"><%= @post.title %></h1>
