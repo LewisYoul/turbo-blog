@@ -7,7 +7,7 @@ module Admin
     end
 
     def update
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
       @post.assign_attributes(post_params)
 
       parse_body

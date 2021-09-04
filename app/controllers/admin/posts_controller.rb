@@ -15,11 +15,11 @@ module Admin
     end
 
     def edit
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
     end
 
     def update
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
 
       if @post.update(post_params)
         redirect_to root_path, notice: 'Post updated!'
@@ -29,7 +29,7 @@ module Admin
     end
 
     def destroy
-      post = Post.find(params[:id])
+      post = Post.friendly.find(params[:id])
 
       post.destroy!
 
