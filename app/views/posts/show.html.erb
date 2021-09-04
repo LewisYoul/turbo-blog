@@ -1,4 +1,6 @@
-<% content_for :twitter_card do %>
+<% content_for(:title) { @post.title } %>
+
+<% content_for(:twitter_card) do %>
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="<%= @post.title %>">
   <meta name="twitter:description" content="<%= @post.summary %>">
