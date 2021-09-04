@@ -10,8 +10,8 @@ module ApplicationHelper
       raw(
         <<-HTML
           <meta name="twitter:card" content="summary">
-          <meta name="twitter:title" content="Lewis Youl">
-          <meta name="twitter:description" content="A web development blog by some fella that lives in blighty">
+          <meta name="twitter:title" content="Lewis Youl - Web Development Blog">
+          <meta name="twitter:description" content="Providing content on JavScript and Ruby on Rails to improve developer happiness, productivity and application performance">
           <meta name="twitter:image" content="https://miro.medium.com/max/1420/1*9hd_8qR0CMZ8L0pVbFLjDw.png">
           <meta name="twitter:site" content="@lewisyoul">
         HTML
