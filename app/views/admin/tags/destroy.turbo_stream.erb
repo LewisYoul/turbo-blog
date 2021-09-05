@@ -1,0 +1,3 @@
+<%= turbo_stream.remove dom_id(@tag) %>
+
+<%= turbo_stream.replace(:toast, partial: "shared/toast", locals: { notice: 'Tag deleted!' }) %>

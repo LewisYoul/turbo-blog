@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :posts, only: :show
   
   namespace :admin do
+    resources :tags, only: %i(index new create destroy)
     resources :posts, only: %i(index new create edit update destroy)
     resources :posts_preview, only: %i(index create update)
   end

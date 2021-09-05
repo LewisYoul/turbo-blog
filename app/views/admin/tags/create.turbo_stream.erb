@@ -1,0 +1,15 @@
+<%= turbo_stream.replace 'new_tag' do %>
+  <%= turbo_frame_tag 'new_tag' do %>
+    <%= render partial: 'form' %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.replace 'tags' do %>
+  <%= turbo_frame_tag 'tags' do %>
+    <% @tags.each do |tag| %>
+      <%= render partial: 'shared/badge', locals: { tag: tag } %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.replace(:toast, partial: "shared/toast", locals: { notice: 'Tag created!' }) %>

@@ -1,0 +1,14 @@
+<%= turbo_frame_tag 'new_tag' do %>
+  <%= render partial: 'form' %>
+<% end %>
+
+<h3>All Tags</h3>
+<%= turbo_frame_tag 'tags' do %>
+  <% if @tags.any? %>
+    <% @tags.each do |tag| %>
+      <%= render partial: 'shared/badge', locals: { tag: tag } %>
+    <% end %>
+  <% else %>
+    <span>No tags to display.</span>
+  <% end %>
+<% end %>
