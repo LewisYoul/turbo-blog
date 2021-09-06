@@ -1,0 +1,5 @@
+<%= turbo_stream.replace 'post_tags' do %>
+  <% @tags.each do |tag| %>
+    <%= render partial: 'shared/badge', locals: { tag: tag, path: admin_post_tag_path(post_id: @post_tag.post_id, tag_id: @post_tag.tag_id), method: :delete, id_prefix: :post_tags } %>
+  <% end %>
+<% end %>

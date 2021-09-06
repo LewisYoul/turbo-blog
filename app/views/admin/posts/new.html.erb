@@ -5,4 +5,11 @@
   <h2>New Post</h2>
 </div>
 
+<h3>Tagged with</h3>
+<%= turbo_frame_tag 'post_tags' do %>
+  <% @post.post_tags.each do |post_tag| %>
+    <%= render partial: 'shared/badge', locals: { tag: post_tag.tag, path: admin_post_tag_path(post_tag), method: :post, id_prefix: :post_tags } %>
+  <% end %>
+<% end %>
+
 <%= render partial: 'form' %>

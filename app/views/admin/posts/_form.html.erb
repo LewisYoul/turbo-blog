@@ -1,5 +1,9 @@
 <%= turbo_frame_tag 'new_post', target: '_top' do %>
   <%= form_for([:admin, @post]) do |form| %>
+    <%= form.fields_for :post_tags do |form_tags_form| %>
+      <%= form_tags_form.select :tag_ids, options_from_collection_for_select(Tag.order(name: :asc), :id, :name), {}, { multiple: true, data: { controller: 'tags', action: 'change->tags#select' } } %>
+    <% end %>
+    
     <div>
       <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
       <div class="mt-1">

@@ -2,6 +2,7 @@ module Admin
   class PostsController < BaseController
     def new
       @post = Post.new
+      @tags = Tag.order(name: :asc)
     end
 
     def create
@@ -16,6 +17,7 @@ module Admin
 
     def edit
       @post = Post.friendly.find(params[:id])
+      @tags = Tag.where.not(id: @post.tag_ids).order(name: :asc)
     end
 
     def update
@@ -39,7 +41,7 @@ module Admin
     private
 
     def post_params
-      params.require(:post).permit(:title, :summary, :body)
+      params.require(:post).permit(:title, :summary, :body, post_tags: { tag_ids: [] })
     end
   end
 end
