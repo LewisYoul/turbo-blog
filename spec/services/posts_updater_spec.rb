@@ -9,21 +9,25 @@ RSpec.describe PostsUpdater do
   let(:tag_3) { FactoryBot.create(:tag, name: 'Python') }
 
   describe '#update_post' do
+    shared_examples 'a post update that fails' do
+      it "doesn't change the post" do
+        expect { post_update }.not_to change { post.reload }
+      end
+      
+      it "doesn't change the post tags" do
+        expect { post_update }.not_to change { post.reload.tag_ids }
+      end
+
+      it 'confirms that the post has not been updated' do
+        expect(post_update.updated?).to be(false)
+      end
+    end
+
     context 'the post params are invalid' do
       context 'a required attribute is unset' do
         let(:params) { { title: nil } }
         
-        it "doesn't change the post" do
-          expect { post_update }.not_to change { post.reload }
-        end
-        
-        it "doesn't change the post tags" do
-          expect { post_update }.not_to change { post.reload.tag_ids }
-        end
-
-        it 'confirms that the post has not been updated' do
-          expect(post_update.updated?).to be(false)
-        end
+        it_behaves_like 'a post update that fails'
 
         it 'returns the errors in the result' do
           expect(post_update.errors[:title]).to eq(["can't be blank"])
@@ -33,17 +37,7 @@ RSpec.describe PostsUpdater do
       context "an id for a tag that doesn't exist is passed" do
         let(:params) { { tag_ids: [300] } }
         
-        it 'confirms that the post has not been updated' do
-          expect(post_update.updated?).to be(false)
-        end
-
-        it "doesn't change the post" do
-          expect { post_update }.not_to change { post.reload }
-        end
-
-        it "doesn't change the post tags" do
-          expect { post_update }.not_to change { post.reload.tag_ids }
-        end
+        it_behaves_like 'a post update that fails'
       end
     end
 
