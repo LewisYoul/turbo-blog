@@ -8,10 +8,10 @@ class PostsUpdater
     Post.transaction do
       @post.post_tags.where.not(tag_id: @params[:tag_ids]).each(&:destroy!)
 
-      @post.update!(@params)
-
-      Result.new(updated: true, post: @post)
+      Result.new(updated: @post.update!(@params), post: @post)
     end
+  rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
+    Result.new(updated: false, post: @post)
   end
 
   class Result
