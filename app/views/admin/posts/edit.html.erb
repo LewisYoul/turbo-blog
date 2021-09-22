@@ -5,18 +5,4 @@
   <h2>Edit Post</h2>
 </div>
 
-<h3>Tagged with</h3>
-<%= turbo_frame_tag 'post_tags' do %>
-  <% @post.post_tags.each do |post_tag| %>
-    <%= render partial: 'shared/badge', locals: { tag: post_tag.tag, path: admin_post_tag_path(post_tag), method: :delete, id_prefix: :post_tags } %>
-  <% end %>
-<% end %>
-
-<h3>Add tags</h3>
-<%= turbo_frame_tag 'tags' do %>
-  <% @tags.each do |tag| %>
-    <%= render partial: 'shared/badge', locals: { tag: tag, path: admin_post_tag_url(post_id: @post.id, tag_id: tag.id), method: :post, id_prefix: :tags } %>
-  <% end %>
-<% end %>
-
 <%= render partial: 'form' %>

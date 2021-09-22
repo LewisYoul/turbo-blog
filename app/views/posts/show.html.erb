@@ -19,6 +19,12 @@
     </div>
   <% end %>
 
+  <div class="flex justify-center">
+    <% @post.tags.each do |tag| %>
+      <%= basic_badge(tag.name) %>
+    <% end %>
+  </div>
+
   <div id="post" class="pt-12">
     <%= raw(@post.parsed_body) %>
   </div>

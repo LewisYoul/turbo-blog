@@ -1,29 +1,37 @@
 module Admin
   class PostsController < BaseController
     def new
+      @post_tags = Post.none
       @post = Post.new
       @tags = Tag.order(name: :asc)
     end
 
     def create
-      @post = Post.new(post_params)
+      respond_to do |format|
+        format.turbo_stream do
+          result = PostsCreator.new(post_params).create_post
 
-      if @post.save
-        redirect_to root_path, notice: 'Post created!'
-      else
-        render :new
+          if result.created?
+            redirect_to root_path, notice: 'Post created!'
+          else
+            @post = result.post
+            @post_tags = Post.where(id: post_params[:tag_ids])
+            @tags = Tag.order(name: :asc)
+          end
+        end
       end
     end
 
     def edit
       @post = Post.friendly.find(params[:id])
-      @tags = Tag.where.not(id: @post.tag_ids).order(name: :asc)
+      @tags = Tag.order(name: :asc)
     end
 
     def update
       @post = Post.friendly.find(params[:id])
+      result = PostsUpdater.new(@post, post_params).update_post
 
-      if @post.update(post_params)
+      if result.updated?
         redirect_to root_path, notice: 'Post updated!'
       else
         render :new
@@ -41,7 +49,7 @@ module Admin
     private
 
     def post_params
-      params.require(:post).permit(:title, :summary, :body, post_tags: { tag_ids: [] })
+      params.require(:post).permit(:title, :summary, :body, tag_ids: [])
     end
   end
 end

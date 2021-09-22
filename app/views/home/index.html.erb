@@ -1,7 +1,17 @@
 <% @posts.each do |post| %>
-  <%= link_to post_path(post), class: "block rounded-md py-3 mb-6 transition cursor-pointer group" do %>
-    <h2 class="font-bold group-hover:underline mt-2"><%= post.title %></h2>
-    <p class="text-gray-500"><%= post.summary %></p>
-    <p class="text-gray-400 m-0 text-sm"><%= post.created_at.strftime('%d %b %Y') %></p>
-  <% end %>
+  <div class="pt-3 mb-6">
+    <%= link_to post_path(post), class: "block rounded-md transition cursor-pointer group" do %>
+      <h2 class="font-bold group-hover:underline mt-2"><%= post.title %></h2>
+      <p class="text-gray-500"><%= post.summary %></p>
+    <% end %>
+
+    <div class="flex items-center">
+      <span class="text-gray-400 m-0 text-sm"><%= post.created_at.strftime('%d %b %Y') %><span class="ml-2 mr-1">-</span></span>
+      <div>
+        <% post.tags.each do |tag| %>
+          <%= basic_badge(tag.name) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>
