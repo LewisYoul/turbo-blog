@@ -28,13 +28,19 @@ module Admin
     end
 
     def update
-      @post = Post.friendly.find(params[:id])
-      result = PostsUpdater.new(@post, post_params).update_post
+      respond_to do |format|
+        format.turbo_stream do
+          @post = Post.friendly.find(params[:id])
 
-      if result.updated?
-        redirect_to root_path, notice: 'Post updated!'
-      else
-        render :new
+          result = PostsUpdater.new(@post, post_params).update_post
+
+          if result.updated?
+            redirect_to post_path(@post), notice: 'Post updated!'
+          else
+            @post_tags = Post.where(id: post_params[:tag_ids])
+            @tags = Tag.order(name: :asc)
+          end
+        end
       end
     end
 
