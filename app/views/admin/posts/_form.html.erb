@@ -1,4 +1,4 @@
-<%= turbo_frame_tag 'new_post', target: '_top', data: { controller: "preview", preview_href_value: admin_preview_index_path(format: :turbo_stream) } do %>
+<%= turbo_frame_tag 'new_post', target: '_top', data: { controller: "preview", preview_href_value: admin_preview_index_path } do %>
   <%= form_for([:admin, @post], data: { controller: 'tags', tags_deselected_class: 'bg-pink-100', tags_selected_class: 'bg-green-100', tags_count_value: @post.tags.size  }) do |form| %>
     <%= form.label :tag_ids, "Tags #{@post.tags.size}", data: { tags_target: 'tagsCount' }, class: "mb-1 block text-sm font-medium text-gray-700" %>
 
@@ -43,9 +43,11 @@
       <div class="flex justify-end w-full">
         <%= form.submit "#{@post.persisted? ? 'Update' : 'Create'} Post", format: :html, class: "mt-4 cursor-pointer flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" %>
       </div>
-
     </div>
   <% end %>
 
-  <%= button_to '', admin_preview_index_path(format: :turbo_stream, markdown: @post.body || 'Nothing to preview'), class: 'hidden', data: { preview_target: 'previewFormButton' }, form: { data: { preview_target: 'previewForm', action: 'turbo:submit-end->preview#previewComplete' } } %>
+  <%= form_with url: admin_preview_index_path, data: { action: 'turbo:submit-end->preview#previewComplete' }, class: 'hidden' do |form| %>
+    <%= form.text_area :markdown, value: @post.body, data: { preview_target: 'previewFormMarkdown' } %>
+    <%= form.submit '', data: { preview_target: 'previewFormButton' } %>
+  <% end %>
 <% end %>

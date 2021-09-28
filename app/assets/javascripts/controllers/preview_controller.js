@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ['writeTab', 'previewTab', 'previewForm', 'previewFormButton', 'preview', 'body']
+  static targets = ['writeTab', 'previewTab', 'previewFormButton', 'previewFormMarkdown', 'preview', 'body']
   static values = { href: String }
 
   connect() {
@@ -9,8 +9,7 @@ export default class extends Controller {
   }
 
   setFormParams(event) {
-    const encodedMarkdown = encodeURIComponent(event.currentTarget.value)
-    this.previewFormTarget.action = `${this.hrefValue}?markdown=${encodedMarkdown}`
+    this.previewFormMarkdownTarget.value = event.currentTarget.value
   }
   
   preview() {
@@ -20,10 +19,10 @@ export default class extends Controller {
   }
 
   previewComplete() {
-    setTimeout(() => this.toggleClasses(), 150)
-    this.previewFormTarget.reset()
-
-    this.isWriting = false
+    setTimeout(() => {
+      this.toggleClasses()
+      this.isWriting = false
+    }, 150)
   }
   
   write() {
