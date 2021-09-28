@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resources :post_tags, only: %i(create destroy)
     resources :tags, only: %i(index new create destroy)
     resources :posts, only: %i(index new create edit update destroy)
-    resources :posts_preview, only: %i(index create update)
+    resources :preview do
+      post :index, on: :collection
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
