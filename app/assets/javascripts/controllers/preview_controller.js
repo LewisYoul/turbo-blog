@@ -20,7 +20,7 @@ export default class extends Controller {
   }
 
   previewComplete() {
-    this.toggleClasses()
+    setTimeout(() => this.toggleClasses(), 150)
     this.previewFormTarget.reset()
 
     this.isWriting = false
