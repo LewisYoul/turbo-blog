@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "posts_#{@page}" do %>
+<%= turbo_frame_tag "posts_#{@page}", target: '_top' do %>
   <% @posts.each do |post| %>
     <div class="pt-3 mb-6">
       <%= link_to post_path(post), class: "block rounded-md transition cursor-pointer group" do %>
