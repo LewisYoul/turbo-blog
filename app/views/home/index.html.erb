@@ -21,5 +21,7 @@
     <%= turbo_frame_tag "posts_#{@next_page}", src: root_path(page: @next_page), loading: :lazy do %>
       <%= render partial: 'shared/icons/loading', locals: { classes: 'w-10 h-10' } %>
     <% end %>
+  <% else %>
+    <p class="text-center">No more posts to show :(</p>
   <% end %>
 <% end %>
