@@ -1,25 +1,29 @@
 <%= turbo_frame_tag "posts_#{@page}", target: '_top' do %>
-  <% @posts.each do |post| %>
-    <div class="pt-3 mb-6">
-      <%= link_to post_path(post), class: "block rounded-md transition cursor-pointer group" do %>
-        <h2 class="font-bold group-hover:underline mt-2"><%= post.title %></h2>
-        <p class="text-gray-500"><%= post.summary %></p>
-      <% end %>
+  <% if @page == 1 && @posts.size == 0 %>
+    <p class="text-center mt-4 text-gray-500">No posts to show</p>
+  <% else %>
+    <% @posts.each do |post| %>
+      <div class="pt-3 mb-6">
+        <%= link_to post_path(post), class: "block rounded-md transition cursor-pointer group" do %>
+          <h2 class="font-bold group-hover:underline mt-2"><%= post.title %></h2>
+          <p class="text-gray-500"><%= post.summary %></p>
+        <% end %>
 
-      <div class="flex items-center">
-        <span class="text-gray-400 m-0 text-sm"><%= post.created_at.strftime('%d %b %Y') %><span class="ml-2 mr-1">-</span></span>
-        <div>
-          <% post.tags.each do |tag| %>
-            <%= basic_badge(tag) %>
-          <% end %>
+        <div class="flex items-center">
+          <span class="text-gray-400 m-0 text-sm"><%= post.created_at.strftime('%d %b %Y') %><span class="ml-2 mr-1">-</span></span>
+          <div>
+            <% post.tags.each do |tag| %>
+              <%= basic_badge(tag) %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <% if @has_next_page %>
-    <%= turbo_frame_tag "posts_#{@next_page}", src: send(next_page_path, page: @next_page), loading: :lazy do %>
-      <%= render partial: 'shared/icons/loading', locals: { classes: 'w-10 h-10' } %>
+    <% if @has_next_page %>
+      <%= turbo_frame_tag "posts_#{@next_page}", src: send(next_page_path, page: @next_page), loading: :lazy do %>
+        <%= render partial: 'shared/icons/loading', locals: { classes: 'w-10 h-10' } %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
