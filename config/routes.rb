@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   end
   resources :users, only: :show
   resources :posts, only: :show
+  resources :search do
+    get :index, on: :collection
+    post :index, on: :collection
+  end
   
   namespace :admin do
     resources :post_tags, only: %i(create destroy)

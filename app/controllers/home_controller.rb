@@ -10,6 +10,6 @@ class HomeController < ApplicationController
       .order(created_at: :desc)
       .offset(offset)
       .limit(PER_PAGE)
-    @has_next_page = @posts.size == PER_PAGE 
+    @has_next_page = @posts.size == PER_PAGE
   end
 end

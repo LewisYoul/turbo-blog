@@ -19,8 +19,8 @@ module ApplicationHelper
     end
   end
 
-  def basic_badge(text)
-    button_tag(text, class: "inline-flex items-center px-2 py-1 my-1 text-sm font-medium text-pink-600 hover:underline")
+  def basic_badge(tag)
+    link_to(tag.name, search_index_path(tag_ids: tag.id), method: :get, class: "inline-flex items-center px-2 py-1 my-1 text-sm font-medium text-pink-600 hover:underline")
   end
 
   def form_tag(tag, tags)
