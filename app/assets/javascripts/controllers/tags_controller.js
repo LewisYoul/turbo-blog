@@ -23,6 +23,9 @@ export default class extends Controller {
 
     this.tagsCountTarget.innerHTML = `Tags ${this.countValue}`
     option.selected = !option.selected
+
+    const changeEvent = new Event('change')
+    this.selectTarget.form.dispatchEvent(changeEvent)
   }
 
   options() {

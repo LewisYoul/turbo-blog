@@ -22,6 +22,9 @@ class SearchController < ApplicationController
 
     @has_next_page = @posts.size == PER_PAGE
 
+    @tags = Tag.all
+    @selected_tags = Tag.where(id: params[:tag_ids])
+
     respond_to do |format|
       format.html
       format.turbo_stream do
