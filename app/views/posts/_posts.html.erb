@@ -21,7 +21,7 @@
     <% end %>
 
     <% if @has_next_page %>
-      <%= turbo_frame_tag "posts_#{@next_page}", src: send(next_page_path, page: @next_page), loading: :lazy do %>
+      <%= turbo_frame_tag "posts_#{@next_page}", src: send(next_page_path, page: @next_page), loading: :lazy, target: '_top' do %>
         <%= render partial: 'shared/icons/loading', locals: { classes: 'w-10 h-10' } %>
       <% end %>
     <% end %>
