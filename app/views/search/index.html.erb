@@ -1,5 +1,5 @@
 <%= form_with url: search_index_path, data: { controller: 'tags search', tags_deselected_class: 'bg-pink-100', tags_selected_class: 'bg-green-100', tags_count_value: @selected_tags.size, action: 'turbo:submit-end->search#submitEnd change->search#submit' } do |form| %>
-  <%= form.text_field(:search_term, value: params[:search_term], autofocus: true, class: "mb-4 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm") %>
+  <%= form.text_field_with_icon(:search_term, value: params[:search_term], autofocus: true, placeholder: 'Search for something...', class: "pl-10 w-full mb-2 appearance-none block px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm") %>
 
   <%= form.label :tag_ids, "Tags #{@selected_tags.size}", data: { tags_target: 'tagsCount' }, class: "mb-1 block text-sm font-medium text-gray-700 hidden" %>
 

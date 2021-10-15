@@ -1,3 +1,22 @@
+class ActionView::Helpers::FormBuilder
+  include ActionView::Helpers::OutputSafetyHelper
+
+  def text_field_with_icon(method, options = {})
+    raw(
+      <<-HTML
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          #{text_field(method, options)}
+        </div>
+      HTML
+    )
+  end
+end
+
 module ApplicationHelper
   def title
     content_for?(:title) ? content_for(:title) : "Lewis Youl"
