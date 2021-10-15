@@ -22,7 +22,7 @@ class SearchController < ApplicationController
 
     @has_next_page = @posts.size == PER_PAGE
 
-    @tags = Tag.all
+    @tags = Tag.order(name: :asc)
     @selected_tags = Tag.where(id: params[:tag_ids])
 
     respond_to do |format|
