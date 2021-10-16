@@ -15,6 +15,39 @@ class ActionView::Helpers::FormBuilder
       HTML
     )
   end
+
+  def multi_select
+    tags = Tag.order(name: :asc).map do |tag|
+      <<-HTML
+        <div data-action='click->multi_select#toggleSelection' data-multi_select-target='option' data-multi_select-selected-value='false' class='flex items-center pr-4 pl-1 px-3 py-1'>
+          <span data-multi_select-target="spacer" class="h-4 w-4 mr-1"></span>
+          <svg data-multi_select-target="check" class="h-4 w-4 mr-1 text-green-500 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>#{tag.name}</span>
+        </div>
+      HTML
+    end.join
+
+    raw(
+      <<-HTML
+        <div class="inline-block cursor-pointer relative whitespace-nowrap" data-controller="multi_select" data-multi_select-selected-class="bg-green-50" data-action="click->multi_select#toggle">
+          <div class="flex items-center border border-pink-500 rounded-md px-3 py-2 text-sm">
+            <span class="mr-1">Select</span>
+            <svg data-multi_select-target="closedIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+            <svg data-multi_select-target="openIcon" xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+            </svg>
+          </div>
+          <div data-multi_select-target="options" class="hidden mt-1 py-1 text-sm bg-white border border-pink-500 rounded-md absolute top-100 left-0">
+            #{tags}
+          </div>
+        </div>
+      HTML
+    )
+  end
 end
 
 module ApplicationHelper
